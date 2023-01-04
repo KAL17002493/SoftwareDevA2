@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `lastname` varchar(255) DEFAULT NULL,
   `password` text,
   `email` varchar(255) DEFAULT NULL,
+  `role` VARCHAR(255) DEFAULT "customer",
   `createdOn` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `modifiedOn` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -35,5 +36,5 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 -- Dumping data for table shop.users: ~1 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`id`, `firstname`, `lastname`, `password`, `email`, `createdOn`, `modifiedOn`) VALUES
-	(1, 'John', 'Doe', '$2y$10$hQ46qoiTiNYCdNsjB6/C2OyX3VzeSe43l0mYJoWyESNFg5e3zU4fW', 'simon@example.com', '2022-12-13 15:42:10', '2022-12-13 15:42:10');
+INSERT INTO `users` (`id`, `firstname`, `lastname`, `password`, `email`, `role`, `createdOn`, `modifiedOn`) VALUES
+	(1, 'Admin', 'Admin', '$2y$10$znho67ElNgf7BlCj0CPK8.idd6IuQPgYTu3.HuGehvZwdG7rmRbbC', 'Admin@Admin.com', 'admin', '2022-12-13 15:42:10', '2022-12-13 15:42:10');
