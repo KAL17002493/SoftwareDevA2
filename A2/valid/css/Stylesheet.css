@@ -1,0 +1,9 @@
+/*Padding to body, stop navbar covering content*/
+body {
+    padding-top: 60px;
+  }
+  @media (max-width: 979px) {
+    body {
+      padding-top: 0px;
+    }
+  }
