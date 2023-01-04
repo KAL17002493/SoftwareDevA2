@@ -8,8 +8,13 @@ if (!isset($_SESSION['username']))
 }
 ?>
 
+
 <?php require __DIR__ . "/inc/header.php"; ?>
+
 <div class="position-absolute top-50 start-50 translate-middle text-center">
     <h1 class="">Welcome <?= htmlspecialchars($_SESSION['username'] ?? 'Member') ?></h1>
 </div>
+
+<h1 class="">Role = <?= htmlspecialchars($_SESSION['role'] ?? 'Member') ?></h1>
+
 <?php require __DIR__ . "/inc/footer.php"; ?>

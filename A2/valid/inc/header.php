@@ -23,14 +23,39 @@
               <li class="nav-item">
                   <a class="nav-link text-dark" href="./index.php">Home</a>
               </li>
+              <li class="nav-item">
+                  <a class="nav-link text-dark" href="./add-product.php">Add Product</a>
+              </li>
             </ul>
 
             <!--Navbar Right-->
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                  <a class="nav-link" href="./login.php"><i class="bi bi-person-circle" style="font-size: 2rem"></i></a>
-              </li>
-            </ul>
+            
+              <?php
+              //If user is not logged it show login icon
+              if (!isset($_SESSION['username']))
+              {
+                ?>
+                  <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./login.php"><i class="bi bi-person-circle" style="font-size: 2rem"></i></a>
+                    </li>
+                  </ul>
+                <?php
+              }
+              //If user is logged in display logout text
+              else
+              {
+                ?>
+                  <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                      <form action="login.php" method="post">
+                          <a class="nav-link text-dark" type="submit" href="./login.php">Logout</a>
+                      </form>
+                    </li>
+                  </ul>
+                <?php
+              }
+            ?>
         </div>
       </div>
     </nav>

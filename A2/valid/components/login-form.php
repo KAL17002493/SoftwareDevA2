@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
       }
       else {
           $_SESSION['username'] = $user['firstname'] .' '. $user['lastname'];
+          $_SESSION['role'] = $user['role'];
           redirect('member');
       }
       
