@@ -9,7 +9,7 @@ if (!isset($_SESSION['username']))
 ?>
 
 <?php require __DIR__ . "/inc/header.php"; ?>
-
-<h1>Welcome <?= htmlspecialchars($_SESSION['username'] ?? 'Member') ?></h1>
-
+<div class="position-absolute top-50 start-50 translate-middle text-center">
+    <h1 class="">Welcome <?= htmlspecialchars($_SESSION['username'] ?? 'Member') ?></h1>
+</div>
 <?php require __DIR__ . "/inc/footer.php"; ?>
