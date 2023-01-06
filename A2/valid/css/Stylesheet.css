@@ -1,7 +1,7 @@
 /*Padding to body, stop navbar covering content*/
-body 
+html
 {
-    padding-top: 60px;
+    padding-top: 15vh;
 }
   
 @media (max-width: 979px)

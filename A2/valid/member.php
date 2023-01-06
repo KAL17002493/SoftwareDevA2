@@ -1,7 +1,7 @@
-<?php
-session_start();
+<?php require __DIR__ . "/inc/header.php"; ?>
 
-if (!isset($_SESSION['username']))
+<?php
+if (!isset($_SESSION['user']))
 {
     header('Location: login.php?errmsg=' . 'You need to login.');
     exit;
@@ -9,12 +9,10 @@ if (!isset($_SESSION['username']))
 ?>
 
 
-<?php require __DIR__ . "/inc/header.php"; ?>
-
 <div class="position-absolute top-50 start-50 translate-middle text-center">
-    <h1 class="">Welcome <?= htmlspecialchars($_SESSION['username'] ?? 'Member') ?></h1>
+    <h1 class="">Welcome <?= htmlspecialchars($_SESSION['user']['firstname'] . ' ' .  $_SESSION['user']['lastname']?? 'Member') ?></h1>
 </div>
 
-<h1 class="">Role = <?= htmlspecialchars($_SESSION['role'] ?? 'Member') ?></h1>
+<h1 class="">Role = <?= htmlspecialchars($_SESSION['user']['role'] ?? 'Member') ?></h1>
 
 <?php require __DIR__ . "/inc/footer.php"; ?>
