@@ -8,8 +8,4 @@
     </div>
 </section>  
 
-<?php
-    var_dump($_SESSION);
-?>
-
 <?php require __DIR__ . "/inc/footer.php"; ?>

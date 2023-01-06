@@ -2,9 +2,9 @@
 
 class InputProcessor {
 
-    public static function process_email(string $email) : array {
+    public static function process_email(string $email, bool $isNewUser = true) : array {
 
-        if (empty($email)) {
+        if (empty($email) && $isNewUser) {
             return self::return_input(false, "Email field is empty.");
         }
 
@@ -19,13 +19,13 @@ class InputProcessor {
 
     }
 
-    public static function process_password(string $password, string $passwordv = null) : array {
+    public static function process_password(string $password, string $passwordv = null, bool $isNewUser = true) : array {
 
-        if (empty($password)) {
+        if (empty($password) && $isNewUser) {
             return self::return_input(false, "Password field is empty.");
         }
 
-        if (!empty($passwordv)) {
+        if (!empty($passwordv) && $isNewUser) {
             if ($password != $passwordv) {
                 return self::return_input(false, "Passwords do not match.");
             }
@@ -42,9 +42,9 @@ class InputProcessor {
 
     }
 
-    public static function process_string(string $text, $length = 0) : array {
+    public static function process_string(string $text, $length = 0, bool $isNewUser = true) : array {
 
-        if (empty($text)) {
+        if (empty($text) && $isNewUser) {
             return self::return_input(false, "Field is empty.");
         }
         

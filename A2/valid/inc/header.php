@@ -54,7 +54,7 @@
                       <li class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <a class="nav-link text-dark" href="./manage-user.php">Manage User</a>
                       </li>
-                      
+
                     <li class="nav-item">
                       <form action="login.php" method="post">
                           <a class="nav-link text-dark" type="submit" href="./logout.php">Logout</a>
