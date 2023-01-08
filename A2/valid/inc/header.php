@@ -30,6 +30,9 @@
               <li class="nav-item">
                   <a class="nav-link text-dark" href="./add-product.php">Add Product</a>
               </li>
+              <li class="nav-item">
+                  <a class="nav-link text-dark" href="./user-overview.php">User Overview</a>
+              </li>
             </ul>
 
             <!--Navbar Right-->

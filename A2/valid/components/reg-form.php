@@ -1,12 +1,10 @@
 <?php 
 
 require_once './inc/functions.php';
-
 $message = '';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST')
+if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
-
     $fname = InputProcessor::process_string($_POST['fname'] ?? '');
     $sname = InputProcessor::process_string($_POST['sname'] ?? '');
     $email = InputProcessor::process_email($_POST['email'] ?? '');

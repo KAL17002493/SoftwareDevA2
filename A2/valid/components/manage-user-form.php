@@ -3,14 +3,14 @@
 require_once './inc/functions.php';
 $message = " ";
 
-if($_SERVER["REQUEST_METHOD"] = "PUT" && isset($_POST['updateUser']))
+if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['updateUser']))
 {
     $fname = InputProcessor::process_string($_POST['fname'] ?? '', false);
     $sname = InputProcessor::process_string($_POST['sname'] ?? '', false);
     $email = InputProcessor::process_email($_POST['email'] ?? '', false);
     $password = InputProcessor::process_password(($_POST['newPassword'] ?? ''),( $_POST['newPassword-r'] ?? ''), false);
 
-    $valid =  $fname['valid'] && $sname['valid'] && $password['valid'] && $email['valid'];
+    $valid =  $fname['valid'] && $sname['valid'] && $password['valid'] && $email['valid'] ;
 
     if($valid) {
 
@@ -18,14 +18,14 @@ if($_SERVER["REQUEST_METHOD"] = "PUT" && isset($_POST['updateUser']))
               'lastname' => $sname['value'] , 
               'newPassword' => $password['value'] ,
               'email' =>  $email['value'] ];
-
+              
       $result = $controllers->members()->update($args);
 
       if($result) {
-        redirect('manage-user');
+        redirect('index');
       }
       else {
-        $message = "Editing details failed.";
+        $message = "Editing profile failed.";
       }
     }
     else {

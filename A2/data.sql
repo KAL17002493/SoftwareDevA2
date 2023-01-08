@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `modifiedOn` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf16;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=UTF16;
 
 -- Dumping data for table shop.users: ~1 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
