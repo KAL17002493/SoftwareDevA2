@@ -33,6 +33,9 @@
               <li class="nav-item">
                   <a class="nav-link text-dark" href="./user-overview.php">User Overview</a>
               </li>
+              <li class="nav-item">
+                  <a class="nav-link text-dark" href="./manage-product.php">Edit Products</a>
+              </li>
             </ul>
 
             <!--Navbar Right-->

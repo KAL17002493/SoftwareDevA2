@@ -55,14 +55,6 @@ class MemberController
         return $this->db->runSQL($sql, $args) -> fetch();
     }
 
-    //GET ALL BY ROLE
-    public function getByRole(string $role) 
-    {
-        $sql = "SELECT * FROM users WHERE role = :role";
-        $args = ['role' => $role];
-        return $this->db->runSQL($sql, $args) -> fetch();
-    }
-
     public function update(array $member) : bool
     {
         $sql = "UPDATE users 
