@@ -1,11 +1,11 @@
 <?php
 require_once './inc/functions.php';
 
- $allUsers =$controllers->members()->getAll();
- $singeUser =$controllers->members()->getByEmail();
+ $allUsers = $controllers->members()->getAll();
+ //$singeUser =$controllers->members()->getByEmail();
 ?>
 
-<!--Dropdown-->
+<!--Dropdown
 <div class="dropdown container">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
         Role list
@@ -23,7 +23,7 @@ require_once './inc/functions.php';
         ?>
     </ul>
  
-</div>
+</div>-->
 
 <!--Search bar-->
 <div class="input-group">
@@ -46,8 +46,6 @@ require_once './inc/functions.php';
     <tbody>
         
 <?php
-if(!isset($_GET["buttonPress"]))
-{
     foreach ($allUsers as $user):
     ?>
 
@@ -56,28 +54,11 @@ if(!isset($_GET["buttonPress"]))
             <td><?= $user["lastname"]?></td>
             <td><?= $user["email"]?></td>
             <td><?= $user["role"]?></td>
-            <td><button type="button" class="btn btn-info">Edit Role</button></td>
+            <td><a href="manage-user.php?id=<?= $user['id'] ?>" type="button" class="btn btn-info">Edit User</a></td>
         </tr>
 
     <?php 
     endforeach;
-}
-else
-{
-    foreach ($singleUser as $user):
-        ?>
-    
-            <tr>
-                <td><?= $user["firstname"]?></td>
-                <td><?= $user["lastname"]?></td>
-                <td><?= $user["email"]?></td>
-                <td><?= $user["role"]?></td>
-                <td><button type="button" class="btn btn-info">Edit Role</button></td>
-            </tr>
-    
-        <?php 
-        endforeach;
-}
 ?>
 
 

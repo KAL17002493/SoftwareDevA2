@@ -43,7 +43,8 @@ if (isset($_GET["id"]))
                 'image' =>  $imageURL
                 ];
 
-      if (!empty($args)) {
+      if (!empty($args)) 
+      {
           $id = $controllers->products()->update($args);
       }
 
@@ -51,7 +52,7 @@ if (isset($_GET["id"]))
           redirect('product', ['id' => $product['id']]);
         }
         else {
-          $message = "Error adding product."; //Change
+          $message = "Editing product failed"; //Change
         }
       }
       else {
@@ -77,12 +78,12 @@ if (isset($_GET["id"]))
                 </div>
                 
                 <div class="form-outline mb-4">
-                  <input type="text" id="description" name="description" class="form-control form-control-lg" value="<?= htmlspecialchars($product['description'] ?? " ") ?>"/>
+                  <input type="text" id="description" name="description" class="form-control form-control-lg" value="<?= htmlspecialchars($product['description'] ?? "") ?>"/>
                   <span class="text-danger"><?= $description['error'] ?? '' ?></span>
                 </div>
     
                 <div class="form-outline mb-4">
-                  <input type="number" id="price" name="price" class="form-control form-control-lg" value="<?= htmlspecialchars($product['price'] ?? " ") ?>"/>
+                  <input type="number" id="price" name="price" class="form-control form-control-lg" value="<?= htmlspecialchars($product['price'] ?? "") ?>"/>
                   <span class="text-danger"><?= $price['error'] ?? '' ?></span>
                 </div>
 

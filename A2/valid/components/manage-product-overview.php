@@ -1,7 +1,7 @@
 <?php
 require_once './inc/functions.php';
 
- $products =$controllers->products()->getAll();
+ $products = $controllers->products()->getAll();
 
 foreach ($products as $product):
 

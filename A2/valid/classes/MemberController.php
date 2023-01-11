@@ -61,9 +61,10 @@ class MemberController
                 SET firstname = :firstname, 
                     lastname = :lastname, 
                     password = :password,
-                    email = :email
+                    email = :email,
+                    role = :role
                 WHERE id = :id;";
-        
+
         return $this->db->runSQL($sql, $member)->execute();
     }
 
