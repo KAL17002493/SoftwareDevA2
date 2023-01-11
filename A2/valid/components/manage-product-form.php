@@ -3,59 +3,66 @@
 require_once './inc/functions.php';
 $message = '';
 
+//Retrieves product data by ID
 if (isset($_GET["id"]))
 {
     $productId = htmlspecialchars($_GET["id"]);
     $product = $controllers->products()->get($productId);
-
-    $name = InputProcessor::process_string($_POST['name'] ?? '');
-    $description = InputProcessor::process_string($_POST['description'] ?? '');
-    $price = InputProcessor::process_string($_POST['price'] ?? '');
-    $image = InputProcessor::process_file($_FILES['image'] ?? []);
-
-    $valid =  $name['valid'] && $description['valid'] && $price['valid'] && $image['valid'];
-
-    var_dump($product);
-
-    if($valid) {
-
-      $image['value'] = ImageProcessor::upload($_FILES['image']);
-      
-      $valueCheck = [
-        'name' => 'name',
-        'description' => 'description',
-        'price' => 'price',
-        'image' => 'image'];
     
-    $args = [];
-    foreach ($valueCheck as $input => $value) 
+    //Executres when posting data
+    if ($_SERVER['REQUEST_METHOD'] == 'POST')
     {
-        if (${$input}['value'] !== $product[$value])
+
+      //Validates input data
+      $name = InputProcessor::process_string($_POST['name'] ?? $product["name"]);
+      $description = InputProcessor::process_string($_POST['description'] ?? $product["description"]);
+      $price = InputProcessor::process_string($_POST['price'] ?? $product["price"]);
+      //Processes data saving in a folder
+      $image = InputProcessor::process_file($_FILES['image'] ?? []);
+
+      $valid =  $name['valid'] && $description['valid'] && $price['valid'] && $image['valid'];
+
+      //Executres if provided data is valid
+      if($valid) 
+      {
+        
+        //Check if image input field is not null, changes image path if it is not null
+        if ($image["value"] != '' ) {
+            $imageURL = ImageProcessor::upload($_FILES['image']);
+        } 
+        //Changes image path
+        else 
         {
-            $args[$value] = ${$input}['value'];
+          $imageURL = $product['image'];
         }
-    }
 
-    if (!empty($args)) {
-        $id = $controllers->products()->update($args);
-    }
+        $args = ['id' => $product['id'],
+                'name' => $name['value'] , 
+                'description' => $description['value'] , 
+                'price' => $price['value'] ,
+                'image' =>  $imageURL
+                ];
 
-      if(!empty($id) && $id > 0) {
-        redirect('edit-product', ['id' => $id]);
+      if (!empty($args)) {
+          $id = $controllers->products()->update($args);
+      }
+
+        if(!empty($product['id']) && $product['id'] > 0) {
+          redirect('product', ['id' => $product['id']]);
+        }
+        else {
+          $message = "Error adding product."; //Change
+        }
       }
       else {
-        $message = "Error adding product."; //Change
+        $message =  "Please fix the following errors: ";
       }
     }
-    else {
-       $message =  "Please fix the following errors: ";
-   }
-
 }
 
 ?>
 
-  <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>" enctype="multipart/form-data">
+  <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']) . "?id=" . htmlspecialchars($product["id"] ?? '')?>" enctype="multipart/form-data">
     <section class="vh-100">
       <div class="container py-5 h-75">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -65,17 +72,17 @@ if (isset($_GET["id"]))
     
                 <h3 class="mb-2">Edit Product</h3>
                 <div class="form-outline mb-4">
-                  <input type="text" id="name" name="name" class="form-control form-control-lg" required value="<?= htmlspecialchars($product['name'] ?? "") ?>"/>
+                  <input type="text" id="name" name="name" class="form-control form-control-lg" value="<?= htmlspecialchars($product['name'] ?? "") ?>"/>
                   <span class="text-danger"><?= $name['error'] ?? '' ?></span>
                 </div>
                 
                 <div class="form-outline mb-4">
-                  <input type="text" id="description" name="description" class="form-control form-control-lg" required value="<?= htmlspecialchars($product['description'] ?? " ") ?>"/>
+                  <input type="text" id="description" name="description" class="form-control form-control-lg" value="<?= htmlspecialchars($product['description'] ?? " ") ?>"/>
                   <span class="text-danger"><?= $description['error'] ?? '' ?></span>
                 </div>
     
                 <div class="form-outline mb-4">
-                  <input type="number" id="price" name="price" class="form-control form-control-lg" required value="<?= htmlspecialchars($product['price'] ?? " ") ?>"/>
+                  <input type="number" id="price" name="price" class="form-control form-control-lg" value="<?= htmlspecialchars($product['price'] ?? " ") ?>"/>
                   <span class="text-danger"><?= $price['error'] ?? '' ?></span>
                 </div>
 
@@ -85,7 +92,7 @@ if (isset($_GET["id"]))
                 </div>
     
                 <div class="form-outline mb-4">
-                  <input type="file" accept="image/*" id="image" name="image" class="form-control form-control-lg" placeholder="Select Image"required />
+                  <input type="file" accept="image/*" id="image" name="image" class="form-control form-control-lg" placeholder="Select Image"/>
                 </div>
     
                 <button class="btn btn-primary btn-lg w-100 mb-4" type="submit">Save</button>

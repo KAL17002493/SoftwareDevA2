@@ -34,13 +34,14 @@ class ProductController
 
     public function update(array $product) : bool
     {
-        $sql = "UPDATE users 
+        $sql = "UPDATE products 
                 SET name = :name, 
                     description = :description, 
                     price = :price, 
                     image = :image
                 WHERE id = :id;";
         
+        var_dump($sql);
         return $this->db->runSQL($sql, $product)->execute();
     }
 

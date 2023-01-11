@@ -4,6 +4,11 @@ class ImageProcessor {
   
     public static function upload($image, $directory = './images/uploads/')
     {
+
+        
+
+        if ($image["tmp_name"] != '') {
+           
         // Generate a unique filename for the uploaded image
     
         $ext = pathinfo($image['name'], PATHINFO_EXTENSION);
@@ -20,6 +25,11 @@ class ImageProcessor {
 
        // Return the new, unique path of the uploaded image
         return $directory . $filename;
+
+        }
+
+        return null;
+        
     }
 }
 
