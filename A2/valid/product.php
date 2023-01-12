@@ -1,5 +1,7 @@
 <?php require __DIR__ . "/inc/header.php"; ?>
 
+<!-- Prevents non admin users who are not logged in from accessing the page -->
+
 <section class="vh-100 text-center">
     <div class="container py-5 h-75">
       <div class="row d-flex justify-content-center align-items-center h-100">

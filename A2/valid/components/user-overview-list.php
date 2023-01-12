@@ -2,34 +2,13 @@
 require_once './inc/functions.php';
 
  $allUsers = $controllers->members()->getAll();
- //$singeUser =$controllers->members()->getByEmail();
 ?>
 
-<!--Dropdown
-<div class="dropdown container">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-        Role list
-    </button>
-
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <?php
-            foreach ($allUsers as $user):
-        ?>
-        
-            <li><a class="dropdown-item"><?= $user["role"]?></a></li>
-
-        <?php 
-            endforeach;
-        ?>
-    </ul>
- 
-</div>-->
-
-<!--Search bar-->
-<div class="input-group">
+<!--Search bar
+<div class="input-group mb-2">
   <input type="search" name="buttonPress"  class="form-control rounded" placeholder="Search by email" aria-label="Search" aria-describedby="search-addon" />
   <button type="button" name="buttonPress" class="btn btn-danger">Search</button>
-</div>
+</div>-->
 
 <!--Table Displey-->
 <table class="table table-striped table-dark text-center">

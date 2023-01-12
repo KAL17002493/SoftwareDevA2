@@ -14,8 +14,9 @@ if(isset($_GET["id"]))
       $lastname = InputProcessor::process_string($_POST['lastname'] ?? $user["lastname"]);
       $email = InputProcessor::process_email($_POST['email'] ?? $user["email"]);
       $password = InputProcessor::process_password(($_POST['password'] ?? $user["password"]),( $_POST['password-v'] ?? $user["password"]));
+      $role = InputProcessor::process_string($_POST['role'] ?? $user["role"]);
   
-      $valid =  $firstname['valid'] && $lastname['valid'] && $email['valid'] && $password['valid'];
+      $valid =  $firstname['valid'] && $lastname['valid'] && $email['valid'] && $password['valid'] && $role["valid"];
 
       if($valid) {
         //hashes the new password
@@ -25,7 +26,7 @@ if(isset($_GET["id"]))
                 'firstname' => $firstname['value'] , 
                 'lastname' => $lastname['value'] , 
                 'password' => $password['value'] ,
-                'role' => $user['role'] ,
+                'role' => $role['value'] ,
                 'email' =>  $email['value'] ];
         
         if(!empty($args))
@@ -35,7 +36,7 @@ if(isset($_GET["id"]))
       
         if(!empty($user["id"]) && $user["id"] > 0) 
         {
-          //redirect('manage-user', ['id' => $user['id']]);
+          redirect('manage-user', ['id' => $user['id']]);
         }
         else {
           $message = "Editing profile failed.";
@@ -58,26 +59,45 @@ if(isset($_GET["id"]))
 
               <h3 class="mb-2">Manage User</h3>  
 
+              <!--Name-->
                 <div class="form-outline mb-4">
                   <input type="text" id="firstname" name="firstname" class="form-control form-control-lg inputValue" value="<?=htmlspecialchars($user['firstname'] ?? '')?>"/>
                   <span class="text-danger"><?= $firstname['error'] ?? '' ?></span>
                 </div>
 
+                <!--Surname-->
                 <div class="form-outline mb-4">
                   <input type="text" id="lastname" name="lastname" class="form-control form-control-lg inputValue" value="<?=htmlspecialchars($user['lastname'] ?? '')?>"/>
                   <span class="text-danger"><?= $lastname['error'] ?? '' ?></span>
                 </div>
 
+                <!--Email-->
                 <div class="form-outline mb-4">
                     <input type="email" id="email" name="email" class="form-control form-control-lg inputValue" value="<?=htmlspecialchars($user['email'] ?? '')?>"/>
                     <span class="text-danger"><?= $email['error'] ?? '' ?></span>
                 </div>
+
+                <!--Role-->
+                <?php
+                  //if user role is admin display
+                  if($_SESSION["user"]["role"] == "admin")
+                  { 
+                ?>
+                <div class="form-outline mb-4">
+                    <input type="text" id="role" name="role" class="form-control form-control-lg inputValue" value="<?=htmlspecialchars($user['role'] ?? '')?>"/>
+                    <span class="text-danger"><?= $email['error'] ?? '' ?></span>
+                </div>
+                <?php
+                  }
+                ?>
   
+                <!--Password-->
                 <div class="form-outline mb-4">
                     <input type="password" autocomplete="new-password" id="password" name="password" class="form-control form-control-lg" placeholder="New Password" />
                     <span class="text-danger"><?= $password['error'] ?? '' ?></span>
                 </div>
 
+                <!--Password-v-->
                 <div class="form-outline mb-4">
                     <input type="password" id="password-v" name="password-v" class="form-control form-control-lg" placeholder="Repear New Password"/>
                     <span class="text-danger"><?= $password['error'] ?? '' ?></span>

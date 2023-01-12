@@ -38,3 +38,15 @@ CREATE TABLE IF NOT EXISTS `users` (
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `password`, `email`, `role`, `createdOn`, `modifiedOn`) VALUES
 	(1, 'Admin', 'Admin', '$2y$10$znho67ElNgf7BlCj0CPK8.idd6IuQPgYTu3.HuGehvZwdG7rmRbbC', 'Admin@Admin.com', 'admin', '2022-12-13 15:42:10', '2022-12-13 15:42:10');
+	
+
+/*Product cateogry table*/
+CREATE TABLE IF NOT EXISTS 'productCategory' 
+	(
+	'id' INT(11) NOT NULL AUTO_INCREMENT,
+	'name' VARCHAR(255) NOT NULL,
+	PRIMARY KEY ('id')
+	);
+	
+INSERT INTO 'productCategory' ('id', 'name') VALUES
+	(1, 'Flower');

@@ -77,7 +77,7 @@ class MemberController
 
     public function login(string $email, string $password)
     {
-        $sql = "SELECT firstname, lastname, email, role, password
+        $sql = "SELECT id, firstname, lastname, email, role, password
         FROM users
         WHERE email = :email;";
 

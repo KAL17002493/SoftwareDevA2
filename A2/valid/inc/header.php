@@ -22,23 +22,13 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-            <!--Navbar Left-->
+            <!--Not logged in-->
             <ul class="navbar-nav mb-2 mb-lg-0">
               <li class="nav-item">
                   <a class="nav-link text-dark" href="./index.php">Home</a>
               </li>
-              <li class="nav-item">
-                  <a class="nav-link text-dark" href="./add-product.php">Add Product</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link text-dark" href="./user-overview.php">User Overview</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link text-dark" href="./manage-product.php">Edit Products</a>
-              </li>
             </ul>
 
-            <!--Navbar Right-->
               <?php
               //If user is not logged it show login icon
               if (!isset($_SESSION['user']))
@@ -55,10 +45,32 @@
               else
               {
                 ?>
+                <!--Left side of the NavBar-->
+                <?php
+                //if user role is Admin
+                  if($_SESSION["user"]["role"] == "admin") 
+                  {
+                ?>
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="./add-product.php">Add Product</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="./manage-product.php">Edit Product</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="./user-overview.php">User Overview</a>
+                        </li>
+                    </ul>
+                <?php
+                  }
+                ?>
+
+                  <!--Right side of the NavBar-->
                   <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
                       <li class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <a class="nav-link text-dark" href="manage-user.php">Manage User</a>
+                        <a class="nav-link text-dark" href="manage-user.php?id=<?= $_SESSION["user"]["id"]?>">Manage Account</a>
                       </li>
 
                     <li class="nav-item">
