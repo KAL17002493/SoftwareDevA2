@@ -8,7 +8,6 @@ if(isset($_GET["id"]))
   $userId = htmlspecialchars($_GET["id"]);
   $user = $controllers->members()->get($userId);
 
-  var_dump($_SERVER["REQUEST_METHOD"]);
   if($_SERVER["REQUEST_METHOD"] == "POST")
   {
       $firstname = InputProcessor::process_string($_POST['firstname'] ?? $user['firstname']);
@@ -19,6 +18,8 @@ if(isset($_GET["id"]))
       $valid =  $firstname['valid'] && $lastname['valid'] && $email['valid'] && $password['valid'];
 
       if($valid) {
+        //hashes the new password
+        $password["value"] = password_hash($_POST["password"], PASSWORD_DEFAULT);
   
         $args = ["id" => $user["id"],
                 'firstname' => $firstname['value'] , 
@@ -26,8 +27,6 @@ if(isset($_GET["id"]))
                 'password' => $password['value'] ,
                 'role' => $user['role'] ,
                 'email' =>  $email['value'] ];
-                
-        
         
         if(!empty($args))
         {
@@ -36,7 +35,7 @@ if(isset($_GET["id"]))
       
         if(!empty($user["id"]) && $user["id"] > 0) 
         {
-          redirect('manage-user', ['id' => $user['id']]);
+          //redirect('manage-user', ['id' => $user['id']]);
         }
         else {
           $message = "Editing profile failed.";
