@@ -6,7 +6,6 @@ $id = $_GET['id'] ?? '';
 if (!empty($id)) {
 
     $product =$controllers->products()->get($id);
-
     if ($product): ?>
     
         <div class="card" style="width: 18rem;">

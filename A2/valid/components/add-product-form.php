@@ -22,9 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
       $args = ['name' => $name['value'] , 
               'description' => $description['value'] , 
               'price' => $price['value'] ,
-              'image' =>  $image['value'] 
+              'image' =>  $image['value'],
+              'categoryId' => (int)$_POST['categoryId'] 
               ];
-
       $id = $controllers->products()->create($args);
 
       if(!empty($id) && $id > 0) {
@@ -70,18 +70,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
                 <!--Category Dropdown List Start-->
                 <div class="dropdown mb-4">
-                  <button class="btn btn-info dropdown-toggle w-100" type="button" id="category" data-bs-toggle="dropdown" aria-expanded="false">Category</button>
-
-                  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                    <select class="form-select" aria-label="Default select example" name="categoryId">
                   <?php
                       foreach ($allCategories as $category):
                   ?>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#"><?= $category["catname"]?></a></li>
+                    <option value=<?=$category["id"]?>><?= $category["catname"]?></option>
+
                   <?php 
                       endforeach;
                   ?>
-                  </ul>
+                    </select>
                 </div>
                 <!--Category Dropdown List End-->
     

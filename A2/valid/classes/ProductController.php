@@ -13,8 +13,8 @@ class ProductController
     public function create(array $product) : int
     {
 
-            $sql = "INSERT INTO products(name, description, price, image)
-                    VALUES (:name, :description, :price, :image);";
+            $sql = "INSERT INTO products(name, description, price, image, categoryId)
+                    VALUES (:name, :description, :price, :image, :categoryId);";
             $this->db->runSQL($sql, $product);
             return $this->db->lastInsertId();
 

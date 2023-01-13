@@ -4,15 +4,15 @@ require_once './inc/functions.php';
 $allCategories = $controllers->categories()->getAll();
 
  //Adds new category PHP
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["name"]))
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["catname"]))
 {
-    $name = InputProcessor::process_string($_POST['name'] ?? '');
+    $name = InputProcessor::process_string($_POST['catname'] ?? '');
 
     $valid = $name["valid"];
 
     if($valid)
     {
-        $args = ["name" => $name["value"]];
+        $args = ["catname" => $name["value"]];
 
         if(!empty($args))
         {
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["name"]))
         <div class="col">
             <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Category Name" id="name" name="name" value="<?= htmlspecialchars($name['value'] ?? '') ?>">
+                    <input type="text" class="form-control" placeholder="Category Name" id="catname" name="catname" value="<?= htmlspecialchars($catname['value'] ?? '') ?>">
                     <button class="input-group-text btn btn-warning" type="submit">Add</button>
                 </div>
             </form>
@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["name"]))
 ?>
 
         <tr>
-            <td><?= $category["name"]?></td>
+            <td><?= $category["catname"]?></td>
             <td><a href="delete-category.php?id=<?= $category['id'] ?>" type="button" class="btn btn-danger">Delete</a></td>
         </tr>
 

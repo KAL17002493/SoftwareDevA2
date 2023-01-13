@@ -13,8 +13,8 @@ class CategoryController
     //Create new category
     public function create(array $category) : int
     {
-        $sql = "INSERT INTO productcategory (name)
-                VALUES(:name);";
+        $sql = "INSERT INTO productcategory (catname)
+                VALUES(:catname);";
 
         $this->db->runSQL($sql, $category);
         return $this->db->lastInsertId();
@@ -32,7 +32,7 @@ class CategoryController
     public function getByNamse(string $name)
     {
         $sql = "SELECT * FROM productcategory WHERE name = :name";
-        $args = ['name' => $name];
+        $args = ['catname' => $name];
         return $this->db->runSQL($sql, $args) -> fetch();
     }
 

@@ -16,13 +16,6 @@ html
   color : black;
 }
 
-/*Increased the width of dropdown list items to button width and limits height*/
-.dropdown-menu {
-  max-height: 250px;
-  overflow-y: auto;
-  width:100%;
-}
-
 /*makes all the cards the same size*/
 .card-img-top {
   width: 100%;

@@ -9,8 +9,10 @@ CREATE TABLE IF NOT EXISTS `products` (
   `description` varchar(255) NOT NULL,
   `price` float NOT NULL,
   `image` mediumtext NOT NULL,
+  `categoryId` INT DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf16;
+  FOREIGN KEY (`categoryId`) REFERENCES productCategory(`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=UTF16;
 
 -- Dumping data for table shop.products: ~1 rows (approximately)
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
@@ -25,14 +27,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `firstname` varchar(255) DEFAULT NULL,
   `lastname` varchar(255) DEFAULT NULL,
-  `password` text,
+  `password` TEXT, 
   `email` varchar(255) DEFAULT NULL,
   `role` VARCHAR(255) DEFAULT "customer",
   `createdOn` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `modifiedOn` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=UTF16;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf16;
 
 -- Dumping data for table shop.users: ~1 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
@@ -41,12 +43,11 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `password`, `email`, `role`,
 	
 
 /*Product cateogry table*/
-CREATE TABLE IF NOT EXISTS `productCategory`
-	(
-	`id` INT(11) NOT NULL AUTO_INCREMENT,
-	`name` VARCHAR(255) NOT NULL,
+CREATE TABLE IF NOT EXISTS `productCategory` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`catname` varchar(255) NOT NULL,
 	PRIMARY KEY (`id`)
-	);
+	)ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=UTF16;
 	
 INSERT INTO `productCategory` (`id`, `name`) VALUES
 	(1, 'Flower');
