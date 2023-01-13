@@ -9,7 +9,7 @@ if ($_SESSION['user']['role'] != "admin")
 }
 ?>
 
-<section class="vh-100 text-center">
+<section class="vh-100">
     <div class="container py-5 h-75">
       <div class="row d-flex align-items-center h-100">
          <?php require __DIR__ . "/components/manage-product-overview.php"; ?>

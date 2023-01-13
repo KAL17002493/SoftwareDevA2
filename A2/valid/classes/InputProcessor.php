@@ -19,19 +19,26 @@ class InputProcessor {
 
     }
 
-    public static function process_password(string $password, string $passwordv = null) : array {
+    public static function process_password(string $password, string $passwordv = null, bool $updateNoPWChange = false) : array {
 
-        if (empty($password)) {
-            return self::return_input(false, "Password field is empty.");
-        }
-
-        if (!empty($passwordv)) {
-            if ($password != $passwordv) {
-                return self::return_input(false, "Passwords do not match.");
+        if($updateNoPWChange){
+            //checks if both password are the same
+            if (empty($password)) {
+                return self::return_input(false, "Password field is empty.");
             }
+
+            if (!empty($passwordv)) {
+                if ($password != $passwordv) {
+                    return self::return_input(false, "Passwords do not match.");
+                }
+            }
+        } else {
+            return self::return_input(true, htmlspecialchars($password));;
         }
 
+        //Checks for speicla characters
         $value = htmlspecialchars($password);
+
         $regex = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/';
 
         if (preg_match($regex, $password) === false ) {

@@ -29,7 +29,7 @@ class ProductController
 
     public function getAll() : array
     {
-        $sql = "SELECT * FROM products";
+        $sql = "SELECT * FROM products, productcategory WHERE productcategory.id = products.categoryId";
         return $this->db->runSQL($sql) -> fetchAll();
     }
 

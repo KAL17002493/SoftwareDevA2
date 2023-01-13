@@ -8,14 +8,19 @@ if(isset($_GET["id"]))
   $userId = htmlspecialchars($_GET["id"]);
   $user = $controllers->members()->get($userId);
 
+
+
   if($_SERVER["REQUEST_METHOD"] == "POST")
   {
       $firstname = InputProcessor::process_string($_POST['firstname'] ?? $user['firstname']);
       $lastname = InputProcessor::process_string($_POST['lastname'] ?? $user["lastname"]);
       $email = InputProcessor::process_email($_POST['email'] ?? $user["email"]);
-      $password = InputProcessor::process_password(($_POST['password'] ?? $user["password"]),( $_POST['password-v'] ?? $user["password"]));
       $role = InputProcessor::process_string($_POST['role'] ?? $user["role"]);
-  
+
+      $passwordChanged = strlen($_POST['password']) > 0;
+
+      $password = InputProcessor::process_password(($_POST['password'] ?? $user["password"]),( $_POST['password-v'] ?? $user["password"]), $passwordChanged);
+
       $valid =  $firstname['valid'] && $lastname['valid'] && $email['valid'] && $password['valid'] && $role["valid"];
 
       if($valid) {

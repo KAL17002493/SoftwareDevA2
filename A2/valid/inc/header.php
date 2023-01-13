@@ -73,7 +73,7 @@
                   <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
                       <li class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <a class="nav-link text-dark" href="manage-user.php?id=<?= $_SESSION["user"]["id"]?>">Manage Account</a>
+                        <a class="nav-link text-dark" href="manage-user.php?id=<?= $_SESSION["user"]["id"]?>"><?= $_SESSION['user']['firstname'] . ' ' .  $_SESSION['user']['lastname']?? 'User' ?></a>
                       </li>
 
                     <li class="nav-item">

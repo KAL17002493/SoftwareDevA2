@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                       foreach ($allCategories as $category):
                   ?>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#"><?= $category["name"]?></a></li>
+                    <li><a class="dropdown-item" href="#"><?= $category["catname"]?></a></li>
                   <?php 
                       endforeach;
                   ?>
