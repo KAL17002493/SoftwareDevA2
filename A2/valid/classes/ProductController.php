@@ -1,5 +1,6 @@
 <?php
 
+//Product controller
 class ProductController
 {
     protected $db;

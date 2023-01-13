@@ -6,7 +6,7 @@ $message = '';
 //Retrieves product data by ID
 if (isset($_GET["id"]))
 {
-    $productId = htmlspecialchars($_GET["id"]);
+    $productId = ($_GET["id"]);
     $product = $controllers->products()->get($productId);
     
     //Executres when posting data

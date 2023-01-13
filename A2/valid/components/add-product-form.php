@@ -3,6 +3,7 @@
 require_once './inc/functions.php';
 
 $message = '';
+$allCategories = $controllers->categories()->getAll();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
@@ -66,6 +67,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                   <input type="number" id="price" name="price" class="form-control form-control-lg" placeholder="Price" required value="<?= htmlspecialchars($price['value'] ?? '') ?>"/>
                   <span class="text-danger"><?= $price['error'] ?? '' ?></span>
                 </div>
+
+                <!--Category Dropdown List Start-->
+                <div class="dropdown mb-4">
+                  <button class="btn btn-info dropdown-toggle w-100" type="button" id="category" data-bs-toggle="dropdown" aria-expanded="false">Category</button>
+
+                  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                  <?php
+                      foreach ($allCategories as $category):
+                  ?>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#"><?= $category["name"]?></a></li>
+                  <?php 
+                      endforeach;
+                  ?>
+                  </ul>
+                </div>
+                <!--Category Dropdown List End-->
     
                 <div class="form-outline mb-4">
                   <input type="file" accept="image/*" id="image" name="image" class="form-control form-control-lg" placeholder="Select Image"required />

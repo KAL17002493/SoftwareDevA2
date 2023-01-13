@@ -41,12 +41,12 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `password`, `email`, `role`,
 	
 
 /*Product cateogry table*/
-CREATE TABLE IF NOT EXISTS 'productCategory' 
+CREATE TABLE IF NOT EXISTS `productCategory`
 	(
-	'id' INT(11) NOT NULL AUTO_INCREMENT,
-	'name' VARCHAR(255) NOT NULL,
-	PRIMARY KEY ('id')
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(255) NOT NULL,
+	PRIMARY KEY (`id`)
 	);
 	
-INSERT INTO 'productCategory' ('id', 'name') VALUES
+INSERT INTO `productCategory` (`id`, `name`) VALUES
 	(1, 'Flower');

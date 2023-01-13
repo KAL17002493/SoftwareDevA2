@@ -61,6 +61,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" href="./user-overview.php">User Overview</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="./add-category.php">Add Category</a>
+                        </li>
                     </ul>
                 <?php
                   }
