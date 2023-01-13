@@ -39,7 +39,8 @@ class ProductController
                 SET name = :name, 
                     description = :description, 
                     price = :price, 
-                    image = :image
+                    image = :image,
+                    categoryId = :categoryId
                 WHERE id = :id;";
         
         var_dump($sql);

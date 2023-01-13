@@ -2,6 +2,7 @@
 
 require_once './inc/functions.php';
 $message = '';
+$allCategories = $controllers->categories()->getAll();
 
 //Retrieves product data by ID
 if (isset($_GET["id"]))
@@ -40,7 +41,8 @@ if (isset($_GET["id"]))
                 'name' => $name['value'] , 
                 'description' => $description['value'] , 
                 'price' => $price['value'] ,
-                'image' =>  $imageURL
+                'image' =>  $imageURL,
+                'categoryId' => (int)$_POST['categoryId'] 
                 ];
 
       if (!empty($args)) 
@@ -86,6 +88,21 @@ if (isset($_GET["id"]))
                   <input type="number" id="price" name="price" class="form-control form-control-lg" value="<?= htmlspecialchars($product['price'] ?? "") ?>"/>
                   <span class="text-danger"><?= $price['error'] ?? '' ?></span>
                 </div>
+
+                <!--Category Dropdown List Start-->
+                  <div class="dropdown mb-4">
+                    <select class="form-select" aria-label="Default select example" name="categoryId">
+                  <?php
+                      foreach ($allCategories as $category):
+                  ?>
+                    <option value=<?=$category["id"]?>><?= $category["catname"]?></option>
+
+                  <?php 
+                      endforeach;
+                  ?>
+                    </select>
+                  </div>
+                <!--Category Dropdown List End-->
 
                 <div class="form-outline mb-4">
                 <img src="<?= $product['image'] ?>" class="card-img-top" alt="$product['name']">
