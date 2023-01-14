@@ -111,6 +111,7 @@ if(isset($_GET["id"]))
 
   
               <button class="btn btn-primary btn-lg w-100 mb-4" type="submit">Save</button>
+              <a class="link-danger mt-3 deleteAccount" type="submit">Delete Account</a>
       
             </div>
           </div>
@@ -118,3 +119,25 @@ if(isset($_GET["id"]))
       </div>
     </div>
   </section>
+
+  <!--Delete account popup and redirection-->
+  <script type="text/javascript">
+    var elems = document.getElementsByClassName('deleteAccount');
+    var confirmIt = function (e) 
+    {
+        if (!confirm('Are you sure you want to delete your account?'))
+        {
+           e.preventDefault();
+        }
+        else
+        {
+          window.location.href = "delete-user.php?id=<?= $user['id'] ?>";
+        }
+    };
+
+    //Added event listener
+    for (var i = 0, l = elems.length; i < l; i++) 
+    {
+        elems[i].addEventListener('click', confirmIt, false);
+    };
+</script>
