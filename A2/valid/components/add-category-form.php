@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["catname"]))
 
         <tr>
             <td><?= $category["catname"]?></td>
-            <td><a href="delete-category.php?id=<?= $category['id'] ?>" type="button" class="btn btn-danger">Delete</a></td>
+            <td><a href="delete-category.php?id=<?= $category['catid'] ?>" type="button" class="btn btn-danger">Delete</a></td>
         </tr>
 
 <?php 

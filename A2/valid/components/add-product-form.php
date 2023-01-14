@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                   <?php
                       foreach ($allCategories as $category):
                   ?>
-                    <option value=<?=$category["id"]?>><?= $category["catname"]?></option>
+                    <option value=<?=$category["catid"]?>><?= $category["catname"]?></option>
 
                   <?php 
                       endforeach;

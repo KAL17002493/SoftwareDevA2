@@ -21,17 +21,17 @@ class CategoryController
     }
 
     //Get one category by ID
-    public function get(int $id)
+    public function get(int $catid)
     {
-        $sql = "SELECT * FROM productcategory WHERE id = :id";
-        $args = ['id' => $id];
+        $sql = "SELECT * FROM productcategory WHERE catid = :catid";
+        $args = ['catid' => $catid];
         return $this->db->runSQL($sql, $args) -> fetch();
     }
 
     //Get category by name
     public function getByNamse(string $name)
     {
-        $sql = "SELECT * FROM productcategory WHERE name = :name";
+        $sql = "SELECT * FROM productcategory WHERE catname = :catname";
         $args = ['catname' => $name];
         return $this->db->runSQL($sql, $args) -> fetch();
     }
@@ -44,10 +44,10 @@ class CategoryController
     }
 
     //Delete category
-    public function delete(int $id) : bool
+    public function delete(int $catid) : bool
     {
-        $sql = "DELETE FROM productcategory WHERE id = :id";
-        return $this->db->runSQL($sql, ['id' => $id])->execute();
+        $sql = "DELETE FROM productcategory WHERE catid = :catid";
+        return $this->db->runSQL($sql, ['catid' => $catid])->execute();
     }
 }
 ?>
