@@ -17,7 +17,6 @@ foreach ($products as $product):
                 <p class="card-text">Price: £<?= $product['price'] ?></p>
                 <p class="card-text">Category: <?= $product['catname']?></p>
                 <a href="edit-product.php?id=<?= $product['id'] ?>" type="button" class="btn btn-info w-100">Edit</a>
-                <?=var_dump($product)?>
             </div>
         </div>
     </div>

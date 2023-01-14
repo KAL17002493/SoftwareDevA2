@@ -8,6 +8,10 @@ if(isset($_GET["id"]))
   $userId = htmlspecialchars($_GET["id"]);
   $user = $controllers->members()->get($userId);
 
+  if($user["role"] == "admin")
+  {
+    redirect("cannot-change");
+  }
 
 
   if($_SERVER["REQUEST_METHOD"] == "POST")
@@ -112,6 +116,7 @@ if(isset($_GET["id"]))
   
               <button class="btn btn-primary btn-lg w-100 mb-4" type="submit">Save</button>
               <a class="link-danger mt-3 deleteAccount" type="submit">Delete Account</a>
+
       
             </div>
           </div>
