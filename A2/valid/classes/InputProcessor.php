@@ -2,6 +2,7 @@
 
 class InputProcessor {
 
+    //EMAIL
     public static function process_email(string $email) : array {
 
         if (empty($email)) {
@@ -19,6 +20,7 @@ class InputProcessor {
 
     }
 
+    //PASSWORDS
     public static function process_password(string $password, string $passwordv = null, bool $updateNoPWChange = false) : array {
 
         if($updateNoPWChange){
@@ -49,6 +51,7 @@ class InputProcessor {
 
     }
 
+    //TEXT
     public static function process_string(string $text, $length = 0) : array {
 
         if (empty($text)) {
@@ -72,9 +75,10 @@ class InputProcessor {
 
     }
 
+    //FILE
     public static function process_file(array $file) : array {
 
-        if (empty($file)) {
+        if (empty($file) ) {
             return self::return_input(false, "File is empty.");
         }
 
