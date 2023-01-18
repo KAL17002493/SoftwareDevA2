@@ -20,8 +20,7 @@ if(isset($_GET["id"]))
         }
         else
         {
-            //redirect("user-overview");
-            redirect("user-ovreview");
+            redirect("user-overview");
         }
     }
     else
