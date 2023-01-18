@@ -95,7 +95,17 @@ class InputProcessor {
             return self::return_input(false, "File is empty.");
         }
 
-        return self::return_input(true, $file['name']);
+        //accepted file types
+        $accepted = [".jpg", "png", ".img"];
+        //check if accepted type maches with file type
+        foreach ($accepted as $accept)
+        {
+            if(str_contains((string)$file["name"], $accept))
+            {
+                return self::return_input(true, $file["name"]);
+            }
+        }
+        return self::return_input(false, "Only .jpg .png .img file types accepted");
 
     }
 
