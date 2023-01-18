@@ -2,6 +2,7 @@
 
     require_once './inc/functions.php';
    
+    //Provided database with necessary information to create connection
     $host = '127.0.0.1';
     $dbname = 'shop';
     $port ='3306';

@@ -3,11 +3,13 @@
 require_once './inc/functions.php';
 $message = "";
 
+//Checks if ID is set to avoid errors
 if(isset($_GET["id"]))
 {
   $userId = htmlspecialchars($_GET["id"]);
   $user = $controllers->members()->get($userId);
 
+  //Redirects to cannot-change if user role is admin
   if($user["role"] == "admin")
   {
     redirect("cannot-change");
@@ -16,13 +18,16 @@ if(isset($_GET["id"]))
 
   if($_SERVER["REQUEST_METHOD"] == "POST")
   {
+      //validates user provided data or defaul values
       $firstname = InputProcessor::process_string($_POST['firstname'] ?? $user['firstname']);
       $lastname = InputProcessor::process_string($_POST['lastname'] ?? $user["lastname"]);
       $email = InputProcessor::process_email($_POST['email'] ?? $user["email"]);
       $role = InputProcessor::process_string($_POST['role'] ?? $user["role"]);
 
+      //Checks if password field is empty meaning password is not being changed
       $passwordChanged = strlen($_POST['password']) > 0;
 
+      //
       $password = InputProcessor::process_password(($_POST['password'] ?? $user["password"]),( $_POST['password-v'] ?? $user["password"]), $passwordChanged);
 
       $valid =  $firstname['valid'] && $lastname['valid'] && $email['valid'] && $password['valid'] && $role["valid"];
@@ -38,11 +43,13 @@ if(isset($_GET["id"]))
                 'role' => $role['value'] ,
                 'email' =>  $email['value'] ];
         
+        //If not empty updates user details
         if(!empty($args))
         {
             $id = $controllers->members()->update($args);
         }
       
+        //if update succeeded reload page of user
         if(!empty($user["id"]) && $user["id"] > 0) 
         {
           redirect('manage-user', ['id' => $user['id']]);
@@ -115,6 +122,7 @@ if(isset($_GET["id"]))
 
   
               <button class="btn btn-primary btn-lg w-100 mb-4" id="saveDetails" type="submit">Save</button>
+              <!--Delete account ONCE PRESSET OK ON ALERT I CANNOT BE UNDONE-->
               <a class="link-danger mt-3 deleteAccount" id="deleteAccount" type="submit">Delete Account</a>
 
       
@@ -130,6 +138,7 @@ if(isset($_GET["id"]))
     var elems = document.getElementsByClassName('deleteAccount');
     var confirmIt = function (e) 
     {
+      //Checks if user wants to delete account
         if (!confirm('Are you sure you want to delete your account?'))
         {
            e.preventDefault();

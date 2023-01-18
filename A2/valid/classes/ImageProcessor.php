@@ -7,10 +7,9 @@ class ImageProcessor {
 
         
 
-        if ($image["tmp_name"] != '') {
-           
+        if ($image["tmp_name"] != '') 
+        {
         // Generate a unique filename for the uploaded image
-    
         $ext = pathinfo($image['name'], PATHINFO_EXTENSION);
     
         $uniqueString = uniqid();

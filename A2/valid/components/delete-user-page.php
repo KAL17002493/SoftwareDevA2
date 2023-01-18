@@ -13,12 +13,14 @@ if(isset($_GET["id"]))
         $result = $controllers->members()->delete($userId);
 
         //If success return to add category page
+        //If sesstion role is admin redirect to user-overview page
         if($result && $_SESSION["user"]["role"] != "admin")
         {
             redirect("logout");
         }
         else
         {
+            //redirect("user-overview");
             redirect("user-ovreview");
         }
     }

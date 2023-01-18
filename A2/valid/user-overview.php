@@ -10,7 +10,7 @@ if ($_SESSION['user']['role'] != "admin")
 ?>
 
 <section class="vh-100">
-    <!--Componentr-->
+    <!--Component display-->
     <div class="container py-5">
          <?php require __DIR__ . "/components/user-overview-list.php"; ?>
     </div>

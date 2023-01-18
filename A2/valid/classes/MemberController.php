@@ -4,17 +4,20 @@ class MemberController
 {
     protected $db;
 
+    //constructor
     public function __construct(Database $db)
     {
         $this->db = $db;
     }
 
+    //register user
     public function register(array $member) : bool
     {
         try {
             //Hashes user provided password
             $member['password'] = password_hash($member['password'], PASSWORD_DEFAULT);
 
+            //Inserts provided date into SQL fields
             $sql = "INSERT INTO users(firstname, lastname, password, email)
                     VALUES (:firstname, :lastname, :password, :email);";
     
@@ -68,25 +71,30 @@ class MemberController
         return $this->db->runSQL($sql, $member)->execute();
     }
 
-    //DELETE
+    //DELETE USER
     public function delete(int $id) : bool
     {
         $sql = "DELETE FROM users WHERE id = :id";
         return $this->db->runSQL($sql, ['id' => $id])->execute();
     }
 
+    //Check if provided details matches ones in database
     public function login(string $email, string $password)
     {
+        //retrives specified data if login successful
         $sql = "SELECT id, firstname, lastname, email, role, password
         FROM users
         WHERE email = :email;";
 
+        //assignts email to $member
         $member = $this->db->runSQL($sql, ['email' => $email]) -> fetch();
         
+        //return false if email not found
         if (!$member) {
             return false;
         }
 
+        //Checks if passwords match
         $auth = password_verify($password, $member['password']);
 
         return $auth ? $member : false;

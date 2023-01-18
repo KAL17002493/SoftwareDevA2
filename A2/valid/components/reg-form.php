@@ -3,8 +3,10 @@
 require_once './inc/functions.php';
 $message = '';
 
+//Checks if method is post
 if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
+  //validates user inputs
     $fname = InputProcessor::process_string($_POST['fname'] ?? '');
     $sname = InputProcessor::process_string($_POST['sname'] ?? '');
     $email = InputProcessor::process_email($_POST['email'] ?? '');
@@ -12,6 +14,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 
     $valid =  $fname['valid'] && $sname['valid'] && $password['valid'] && $email['valid'];
 
+    //If data is valid
     if($valid) {
 
       $args = ['firstname' => $fname['value'] , 
@@ -19,11 +22,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
               'password' => $password['value'] ,
               'email' =>  $email['value'] ];
 
+      //Sends args to register in members controller
       $result = $controllers->members()->register($args);
 
+      //if account created redirect to login page for user to login
       if($result) {
         redirect('login', ['errmsg' => 'You need to login with your new account.']);
       }
+      //if email already exists
       else {
         $message = "Email already registered.";
       }
@@ -72,7 +78,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                   <span class="text-danger"><?= $password['error'] ?? '' ?></span>
                 </div>
     
+                <!--Submit user inputs-->
                 <button class="btn btn-primary btn-lg w-100 mb-4" id="registerButton" type="submit">Register</button>
+                <!--Takes user to login.php page button-->
                 <a class="btn btn-secondary btn-lg w-100" id="loginButton" href="./login.php" >Already got an account?</a>
 
                 <?= isset($_GET['errmsg']) ? $message = $_GET['errmsg'] : '' ?>

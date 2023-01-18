@@ -2,6 +2,7 @@
 require_once './inc/functions.php';
 $message = "";
 
+//Checks if id has been sent through
 if(isset($_GET["id"]))
 {
     $categoryId = htmlspecialchars($_GET["id"]);

@@ -12,6 +12,7 @@ html
     }
 }
 
+/*Changes input box input value to black*/
 .inputValue {
   color : black;
 }

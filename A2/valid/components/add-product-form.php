@@ -5,9 +5,11 @@ require_once './inc/functions.php';
 $message = '';
 $allCategories = $controllers->categories()->getAll();
 
+//Checks if data is being posted to avoid errors
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 
+    //Sends user provided data to InputProcessors for validation
     $name = InputProcessor::process_string($_POST['name'] ?? '');
     $description = InputProcessor::process_string($_POST['description'] ?? '');
     $price = InputProcessor::process_string($_POST['price'] ?? '' && $_POST["price"] < 0);
@@ -15,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
     $valid =  $name['valid'] && $description['valid'] && $price['valid'] && $image['valid'];
 
+    //If valid creates new product
     if($valid) {
 
       $image['value'] = ImageProcessor::upload($_FILES['image']);
@@ -27,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
               ];
       $id = $controllers->products()->create($args);
 
+      //if product created redirects to product page with newly created product displalyed
       if(!empty($id) && $id > 0) {
         redirect('product', ['id' => $id]);
       }
@@ -52,17 +56,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
               <div class="card-body p-5 text-center">
     
                 <h3 class="mb-2">Add Product</h3>
+                <!--Product Name-->
                 <div class="form-outline mb-4">
                   <input type="text" id="name" name="name" class="form-control form-control-lg" placeholder="Name" required value="<?= htmlspecialchars($name['value'] ?? '') ?>"/>
                   <span class="text-danger"><?= $name['error'] ?? '' ?></span>
                 </div>
                 
+                <!--Description-->
                 <div class="form-outline mb-4">
                   <input type="text" id="description" name="description" class="form-control form-control-lg" placeholder="Description" required value="<?= htmlspecialchars($description['value'] ?? '') ?>"/>
                   <span class="text-danger"><?= $description['error'] ?? '' ?></span>
                 </div>
     
-    
+                <!--Price-->
                 <div class="form-outline mb-4">
                   <input type="number" step="0.01" id="price" name="price" class="form-control form-control-lg" placeholder="Price" required value="<?= htmlspecialchars($price['value'] ?? '') ?>"/>
                   <span class="text-danger"><?= $price['error'] ?? '' ?></span>
@@ -72,6 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                 <div class="dropdown mb-4">
                     <select class="form-select" aria-label="Default select example" name="categoryId">
                   <?php
+                      //Dropdown populated by category items by ID
                       foreach ($allCategories as $category):
                   ?>
                     <option value=<?=$category["catid"]?>><?= $category["catname"]?></option>
@@ -83,6 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                 </div>
                 <!--Category Dropdown List End-->
     
+                <!--Image Input-->
                 <div class="form-outline mb-4">
                   <input type="file" accept="image/*" id="image" name="image" class="form-control form-control-lg" placeholder="Select Image"required />
                 </div>

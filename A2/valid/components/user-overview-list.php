@@ -4,12 +4,6 @@ require_once './inc/functions.php';
  $allUsers = $controllers->members()->getAll();
 ?>
 
-<!--Search bar
-<div class="input-group mb-2">
-  <input type="search" name="buttonPress"  class="form-control rounded" placeholder="Search by email" aria-label="Search" aria-describedby="search-addon" />
-  <button type="button" name="buttonPress" class="btn btn-danger">Search</button>
-</div>-->
-
 <!--Table Displey-->
 <table class="table table-striped table-dark text-center">
     <thead>
@@ -25,6 +19,7 @@ require_once './inc/functions.php';
     <tbody>
         
 <?php
+//Displays all user in SQL database
     foreach ($allUsers as $user):
     ?>
 

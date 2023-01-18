@@ -8,7 +8,7 @@ if ($_SESSION['user']['role'] != "admin")
     exit;
 }
 ?>
-
+<!--Component display-->
 <section class="vh-100">
     <div class="container py-5 h-75">
       <div class="row d-flex align-items-center h-100">

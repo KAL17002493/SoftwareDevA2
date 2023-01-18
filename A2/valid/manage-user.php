@@ -8,7 +8,7 @@ if (!isset($_SESSION['user']))
     exit;
 }
 ?>
-
+<!--Component display-->
 <?php require __DIR__ . "/components/manage-user-form.php"; ?>
 
 <?php require __DIR__ . "/inc/footer.php"; ?>

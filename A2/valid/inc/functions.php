@@ -10,6 +10,7 @@
 
     //----TEMP----
 
+    //run provided SQL
     function runSQL(PDO $pdo, string $sql, array $args = null)
     {
          if(!$args)
@@ -22,6 +23,7 @@
          return $statement;
     }
 
+    //Redirection method
     function redirect(string $page, array $params = [])
     {
         $qs = $params ? '?' . http_build_query($params) : '';

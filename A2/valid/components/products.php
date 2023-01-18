@@ -3,6 +3,7 @@ require_once './inc/functions.php';
 
  $products =$controllers->products()->getAll();
 
+ //Displays all products in SQL database
 foreach ($products as $product):
 ?>
     <div class="col-4 my-2">

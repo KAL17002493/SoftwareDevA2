@@ -7,6 +7,8 @@ if ($_SESSION['user']['role'] != "admin")
     header('Location: index.php');
     exit;
 }
+
+//Display delete-product component 
 ?>
 <?php require __DIR__ . "/components/delete-product-page.php"; ?>
 

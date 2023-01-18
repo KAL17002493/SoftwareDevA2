@@ -9,6 +9,7 @@ if ($_SESSION['user']['role'] != "admin")
 }
 ?>
 
+<!--Display component-->
 <section class="vh-100 text-center">
     <div class="container py-5 h-75">
       <div class="row d-flex align-items-center h-100">

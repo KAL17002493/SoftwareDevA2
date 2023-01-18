@@ -3,9 +3,11 @@ require_once './inc/functions.php';
 
 $id = $_GET['id'] ?? '';
 
+//Check if I not empty
 if (!empty($id)) {
 
     $product =$controllers->products()->get($id);
+    //If product exists displays it
     if ($product): ?>
     
         <div class="card" style="width: 18rem;">

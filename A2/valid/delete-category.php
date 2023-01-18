@@ -7,6 +7,8 @@ if ($_SESSION['user']['role'] != "admin")
     header('Location: index.php');
     exit;
 }
+
+//Displays delete-category-page
 ?>
 <?php require __DIR__ . "/components/delete-category-page.php"; ?>
 

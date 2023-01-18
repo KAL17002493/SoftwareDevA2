@@ -10,9 +10,11 @@ class ProductController
         $this->db = $db;
     }
 
+    //Create new product
     public function create(array $product) : int
     {
 
+            //Inserts user provided data int SQL database
             $sql = "INSERT INTO products(name, description, price, image, categoryId)
                     VALUES (:name, :description, :price, :image, :categoryId);";
             $this->db->runSQL($sql, $product);
@@ -20,6 +22,7 @@ class ProductController
 
     }
 
+    //GET product by ID
     public function get(int $id)
     {
         $sql = "SELECT * FROM products WHERE id = :id";
@@ -27,12 +30,14 @@ class ProductController
         return $this->db->runSQL($sql, $args) -> fetch();
     }
 
+    //GET all products
     public function getAll() : array
     {
         $sql = "SELECT * FROM products, productcategory WHERE productcategory.catid = products.categoryId";
         return $this->db->runSQL($sql) -> fetchAll();
     }
 
+    //Update product
     public function update(array $product) : bool
     {
         $sql = "UPDATE products 
@@ -47,6 +52,7 @@ class ProductController
         return $this->db->runSQL($sql, $product)->execute();
     }
 
+    //Delte product by ID
     public function delete(int $id) : bool
     {
         $sql = "DELETE FROM products WHERE id = :id";

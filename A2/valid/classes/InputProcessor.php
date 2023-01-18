@@ -2,9 +2,10 @@
 
 class InputProcessor {
 
-    //EMAIL
+    //EMAIL verification
     public static function process_email(string $email) : array {
 
+        //Checks if emtty
         if (empty($email)) {
             return self::return_input(false, "Email field is empty.");
         }
@@ -12,6 +13,7 @@ class InputProcessor {
         $value = htmlspecialchars($email);
         $value = filter_var($email, FILTER_VALIDATE_EMAIL);
 
+        //returns error if provided email does not pass checks
         if ($value === false ) {
             return self::return_input(false, "$email is not valid a valid email address.");
         }
@@ -20,11 +22,11 @@ class InputProcessor {
 
     }
 
-    //PASSWORDS
+    //PASSWORDS verification
     public static function process_password(string $password, string $passwordv = null, bool $updateNoPWChange = false) : array {
 
+        //checks if both password are the same
         if($updateNoPWChange){
-            //checks if both password are the same
             if (empty($password)) {
                 return self::return_input(false, "Password field is empty.");
             }
@@ -41,8 +43,10 @@ class InputProcessor {
         //Checks for speicla characters
         $value = htmlspecialchars($password);
 
+        //must satisfy regect specification 
         $regex = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/';
 
+        //error message if specifications not met
         if (preg_match($regex, $password) === false ) {
             return self::return_input(false, "Password must have a minimum of 8 characters, at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character.");
         }
@@ -51,21 +55,25 @@ class InputProcessor {
 
     }
 
-    //TEXT
+    //TEXT verification
     public static function process_string(string $text, $length = 0) : array {
 
+        //Checks if provided not not empty
         if (empty($text)) {
             return self::return_input(false, "Field is empty.");
         }
         
-        if ($length > 0) {
+        //Check if lenght is more than 5
+        if ($length > 5) {
             if (strlen($text) > $length) {
                 return self::return_input(false, "Text must be less than $length characters.");
             }
         }
 
+        //Checks if all characters are english cracters
         $regex = '/^[a-zA-Z]+([_ -]?[a-zA-Z])*$/';
 
+        //Returns false if checks not satisfied
         if (preg_match($regex, $text) === false ) {
             return self::return_input(false, "Text must be A - z characters only.");
         }
@@ -75,9 +83,10 @@ class InputProcessor {
 
     }
 
-    //FILE
+    //FILE verification
     public static function process_file(array $file) : array {
 
+        //Checks if file is not empty
         if (empty($file) ) {
             return self::return_input(false, "File is empty.");
         }
@@ -86,6 +95,7 @@ class InputProcessor {
 
     }
 
+    //returns provided data if it was valid
     private static function return_input(bool $valid, string $value) : array {
 
         return [

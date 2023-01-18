@@ -2,6 +2,7 @@
 require_once './inc/functions.php';
 $message = "";
 
+//Checks if ID has been sent
 if(isset($_GET["id"]))
 {
     $productId = htmlspecialchars($_GET["id"]);

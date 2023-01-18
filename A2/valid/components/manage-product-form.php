@@ -23,7 +23,7 @@ if (isset($_GET["id"]))
 
       $valid =  $name['valid'] && $description['valid'] && $price['valid'] && $image['valid'];
 
-      //Executres if provided data is valid
+      //Executes if provided data is valid
       if($valid) 
       {
         
@@ -37,6 +37,7 @@ if (isset($_GET["id"]))
           $imageURL = $product['image'];
         }
 
+        //Populates arrey
         $args = ['id' => $product['id'],
                 'name' => $name['value'] , 
                 'description' => $description['value'] , 
@@ -45,11 +46,13 @@ if (isset($_GET["id"]))
                 'categoryId' => (int)$_POST['categoryId'] 
                 ];
 
+      //If arrey populated sends to update
       if (!empty($args)) 
       {
           $id = $controllers->products()->update($args);
       }
 
+      //If update process suceeds redirects to product page displaying product by ID
         if(!empty($product['id']) && $product['id'] > 0) {
           redirect('product', ['id' => $product['id']]);
         }
@@ -74,16 +77,19 @@ if (isset($_GET["id"]))
               <div class="card-body p-5 text-center">
     
                 <h3 class="mb-2">Edit Product</h3>
+                <!--Product name-->
                 <div class="form-outline mb-4">
                   <input type="text" id="name" name="name" class="form-control form-control-lg" required value="<?= htmlspecialchars($product['name'] ?? "") ?>"/>
                   <span class="text-danger"><?= $name['error'] ?? '' ?></span>
                 </div>
-                
+
+                <!--Product description-->
                 <div class="form-outline mb-4">
                   <input type="text" id="description" name="description" class="form-control form-control-lg" required value="<?= htmlspecialchars($product['description'] ?? "") ?>"/>
                   <span class="text-danger"><?= $description['error'] ?? '' ?></span>
                 </div>
     
+                <!--Product price-->
                 <div class="form-outline mb-4">
                   <input type="number" step="0.01" id="price" name="price" class="form-control form-control-lg" required value="<?= htmlspecialchars($product['price'] ?? "") ?>"/>
                   <span class="text-danger"><?= $price['error'] ?? '' ?></span>
@@ -93,6 +99,7 @@ if (isset($_GET["id"]))
                   <div class="dropdown mb-4">
                     <select class="form-select" aria-label="Default select example" name="categoryId">
                   <?php
+                      //List items retrieved from SQL database
                       foreach ($allCategories as $category):
                   ?>
                     <option value=<?=$category["catid"]?>><?= $category["catname"]?></option>
@@ -113,6 +120,7 @@ if (isset($_GET["id"]))
                   <input type="file" accept="image/*" id="image" name="image" class="form-control form-control-lg" required placeholder="Select Image"/>
                 </div>
     
+                <!--Submit-->
                 <button class="btn btn-primary btn-lg w-100 mb-4" id="save" type="submit">Save</button>
                
                 <?= isset($_GET['errmsg']) ? $message = $_GET['errmsg'] : '' ?>
