@@ -25,16 +25,25 @@ if(isset($_GET["id"]))
       $role = InputProcessor::process_string($_POST['role'] ?? $user["role"]);
 
       //Checks if password field is empty meaning password is not being changed
-      $passwordChanged = strlen($_POST['password']) > 0;
 
-      //
+      //$passwordChanged = strlen($_POST['password']) > 0;
+      //$passwordChanged = !empty($_POST["password"]);
+      $passwordChanged = false;
+      if(strlen($_POST['password']) > 0 || !empty($_POST["password"]))
+      {
+          $passwordChanged = true;
+      }
+
       $password = InputProcessor::process_password(($_POST['password'] ?? $user["password"]),( $_POST['password-v'] ?? $user["password"]), $passwordChanged);
-
       $valid =  $firstname['valid'] && $lastname['valid'] && $email['valid'] && $password['valid'] && $role["valid"];
 
       if($valid) {
+       
         //hashes the new password
-        $password["value"] = password_hash($_POST["password"], PASSWORD_DEFAULT);
+        /*if($passwordChanged)
+        {
+          $password["value"] = password_hash($_POST["password"], PASSWORD_DEFAULT);
+        }*/
   
         $args = ["id" => $user["id"],
                 'firstname' => $firstname['value'] , 
@@ -52,7 +61,7 @@ if(isset($_GET["id"]))
         //if update succeeded reload page of user
         if(!empty($user["id"]) && $user["id"] > 0) 
         {
-          redirect('manage-user', ['id' => $user['id']]);
+          //redirect('manage-user', ['id' => $user['id']]);
         }
         else {
           $message = "Editing profile failed.";
