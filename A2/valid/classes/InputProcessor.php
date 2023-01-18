@@ -22,7 +22,8 @@ class InputProcessor {
 
     }
 
-    //PASSWORDS verification
+    //FT18, FT6
+    //PASSWORDS verification 
     public static function process_password(string $password, string $passwordv = null, bool $updateNoPWChange = false) : array {
 
         //checks if both password are the same
