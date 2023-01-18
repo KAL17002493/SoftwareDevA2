@@ -114,8 +114,8 @@ if(isset($_GET["id"]))
                 
 
   
-              <button class="btn btn-primary btn-lg w-100 mb-4" type="submit">Save</button>
-              <a class="link-danger mt-3 deleteAccount" type="submit">Delete Account</a>
+              <button class="btn btn-primary btn-lg w-100 mb-4" id="saveDetails" type="submit">Save</button>
+              <a class="link-danger mt-3 deleteAccount" id="deleteAccount" type="submit">Delete Account</a>
 
       
             </div>

@@ -72,8 +72,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                   <span class="text-danger"><?= $password['error'] ?? '' ?></span>
                 </div>
     
-                <button class="btn btn-primary btn-lg w-100 mb-4" type="submit">Register</button>
-                <a class="btn btn-secondary btn-lg w-100" href="./login.php" >Already got an account?</a>
+                <button class="btn btn-primary btn-lg w-100 mb-4" id="registerButton" type="submit">Register</button>
+                <a class="btn btn-secondary btn-lg w-100" id="loginButton" href="./login.php" >Already got an account?</a>
 
                 <?= isset($_GET['errmsg']) ? $message = $_GET['errmsg'] : '' ?>
                 <?= $message ? alert($message, 'danger') : '' ?>

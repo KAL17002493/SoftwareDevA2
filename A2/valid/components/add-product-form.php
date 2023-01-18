@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                   <input type="file" accept="image/*" id="image" name="image" class="form-control form-control-lg" placeholder="Select Image"required />
                 </div>
     
-                <button class="btn btn-primary btn-lg w-100 mb-4" type="submit">Add Product</button>
+                <button class="btn btn-primary btn-lg w-100 mb-4" id="addProductButton" type="submit">Add Product</button>
                
                 <?= isset($_GET['errmsg']) ? $message = $_GET['errmsg'] : '' ?>
                 <?= $message ? alert($message, 'danger') : '' ?>

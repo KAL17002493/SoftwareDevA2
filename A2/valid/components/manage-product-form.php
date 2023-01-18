@@ -75,17 +75,17 @@ if (isset($_GET["id"]))
     
                 <h3 class="mb-2">Edit Product</h3>
                 <div class="form-outline mb-4">
-                  <input type="text" id="name" name="name" class="form-control form-control-lg" value="<?= htmlspecialchars($product['name'] ?? "") ?>"/>
+                  <input type="text" id="name" name="name" class="form-control form-control-lg" required value="<?= htmlspecialchars($product['name'] ?? "") ?>"/>
                   <span class="text-danger"><?= $name['error'] ?? '' ?></span>
                 </div>
                 
                 <div class="form-outline mb-4">
-                  <input type="text" id="description" name="description" class="form-control form-control-lg" value="<?= htmlspecialchars($product['description'] ?? "") ?>"/>
+                  <input type="text" id="description" name="description" class="form-control form-control-lg" required value="<?= htmlspecialchars($product['description'] ?? "") ?>"/>
                   <span class="text-danger"><?= $description['error'] ?? '' ?></span>
                 </div>
     
                 <div class="form-outline mb-4">
-                  <input type="number" step="0.01" id="price" name="price" class="form-control form-control-lg" value="<?= htmlspecialchars($product['price'] ?? "") ?>"/>
+                  <input type="number" step="0.01" id="price" name="price" class="form-control form-control-lg" required value="<?= htmlspecialchars($product['price'] ?? "") ?>"/>
                   <span class="text-danger"><?= $price['error'] ?? '' ?></span>
                 </div>
 
@@ -110,10 +110,10 @@ if (isset($_GET["id"]))
                 </div>
     
                 <div class="form-outline mb-4">
-                  <input type="file" accept="image/*" id="image" name="image" class="form-control form-control-lg" placeholder="Select Image"/>
+                  <input type="file" accept="image/*" id="image" name="image" class="form-control form-control-lg" required placeholder="Select Image"/>
                 </div>
     
-                <button class="btn btn-primary btn-lg w-100 mb-4" type="submit">Save</button>
+                <button class="btn btn-primary btn-lg w-100 mb-4" id="save" type="submit">Save</button>
                
                 <?= isset($_GET['errmsg']) ? $message = $_GET['errmsg'] : '' ?>
                 <?= $message ? alert($message, 'danger') : '' ?>

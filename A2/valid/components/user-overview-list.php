@@ -33,7 +33,7 @@ require_once './inc/functions.php';
             <td><?= $user["lastname"]?></td>
             <td><?= $user["email"]?></td>
             <td><?= $user["role"]?></td>
-            <td><a href="manage-user.php?id=<?= $user['id'] ?>" type="button" class="btn btn-info">Edit User</a></td>
+            <td><a id="user<?= $user['id'] ?>" href="manage-user.php?id=<?= $user['id'] ?>" type="button" class="btn btn-info">Edit User</a></td>
         </tr>
 
     <?php 
