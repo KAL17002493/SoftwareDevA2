@@ -6,9 +6,19 @@ $message = '';
 //Check if method is POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
-    //validates email and password
+  if(!empty(trim($_POST['password'])))
+  {
+      $password = InputProcessor::process_password($_POST['password'] ?? '', $_POST['password-v'] ?? '', true);
+      if ($password['valid']) {
+          //validated password, proceed with login process
+      }
+      else {
+          $message =  "Please fix the above errors. ";
+      }
+  }
+
+    //validates email
     $email = InputProcessor::process_email($_POST['email'] ?? '');
-    $password = InputProcessor::process_password($_POST['password'] ?? '');
 
     $valid = $email['valid'] && $password['valid'];
 
@@ -35,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
    }
 
 } 
+
 ?>
 
 <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>">

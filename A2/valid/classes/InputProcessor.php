@@ -26,13 +26,13 @@ class InputProcessor {
     public static function process_password(string $password, string $passwordv = null, bool $updateNoPWChange = false) : array {
 
         //checks if both password are the same
-        if($updateNoPWChange)
+        if(!$updateNoPWChange)
         {
+            // Password validation
             if (empty($password)) 
             {
                 return self::return_input(false, "Password field is empty.");
             }
-
             if (empty($passwordv) || ($password != $passwordv)) 
             {
                 return self::return_input(false, "Passwords do not match.");
@@ -41,7 +41,7 @@ class InputProcessor {
             {
                 return self::return_input(true, htmlspecialchars($password));;
             }
-        } 
+        }
 
         //Checks for speicla characters
         $value = htmlspecialchars($password);

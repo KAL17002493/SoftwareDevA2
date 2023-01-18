@@ -25,25 +25,27 @@ if(isset($_GET["id"]))
       $role = InputProcessor::process_string($_POST['role'] ?? $user["role"]);
 
       //Checks if password field is empty meaning password is not being changed
+      $passwordChanged = !empty($_POST['password']);
 
-      //$passwordChanged = strlen($_POST['password']) > 0;
-      //$passwordChanged = !empty($_POST["password"]);
-      $passwordChanged = false;
-      if(strlen($_POST['password']) > 0 || !empty($_POST["password"]))
+      if($passwordChanged && !empty(trim($_POST['password'])) && !empty(trim($_POST['password-v'])) )
       {
-          $passwordChanged = true;
+          $password = InputProcessor::process_password(($_POST['password'] ?? $user["password"]),( $_POST['password-v'] ?? $user["password"]), $passwordChanged);
+      }
+      else
+      {
+          $password = ["valid" => true, "value" => $user["password"]];
       }
 
-      $password = InputProcessor::process_password(($_POST['password'] ?? $user["password"]),( $_POST['password-v'] ?? $user["password"]), $passwordChanged);
+      //$password = InputProcessor::process_password(($_POST['password'] ?? $user["password"]),( $_POST['password-v'] ?? $user["password"]), $passwordChanged);
       $valid =  $firstname['valid'] && $lastname['valid'] && $email['valid'] && $password['valid'] && $role["valid"];
 
       if($valid) {
        
         //hashes the new password
-        /*if($passwordChanged)
+        if($passwordChanged)
         {
           $password["value"] = password_hash($_POST["password"], PASSWORD_DEFAULT);
-        }*/
+        }
   
         $args = ["id" => $user["id"],
                 'firstname' => $firstname['value'] , 

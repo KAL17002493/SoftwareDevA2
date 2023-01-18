@@ -69,12 +69,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                 </div>
     
                 <div class="form-outline mb-4">
-                  <input type="password" autocomplete="new-password" id="password" name="password" class="form-control form-control-lg" placeholder="Password"required />
+                  <input type="password" autocomplete="new-password" id="password" name="password" class="form-control form-control-lg" placeholder="Password" required />
                 </div>
     
-                
+                 
                 <div class="form-outline mb-4">
-                  <input type="password" id="password-v" name="password-v" class="form-control form-control-lg" placeholder="Password again" />
+                  <input type="password" id="password-v" name="password-v" class="form-control form-control-lg" placeholder="Password again" required />
                   <span class="text-danger"><?= $password['error'] ?? '' ?></span>
                 </div>
     
