@@ -17,7 +17,7 @@ if (isset($_GET["id"]))
       //Validates input data
       $name = InputProcessor::process_string($_POST['name'] ?? $product["name"]);
       $description = InputProcessor::process_string($_POST['description'] ?? $product["description"]);
-      $price = InputProcessor::process_string($_POST['price'] ?? $product["price"] && $_POST["price"] < 0);
+      $price = InputProcessor::process_number($_POST['price'] ?? $product["price"] && $_POST["price"] < 0);
       //Processes data saving in a folder
       $image = InputProcessor::process_file($_FILES['image'] ?? []);
 

@@ -79,7 +79,7 @@ class InputProcessor {
         $regex = '/^[a-zA-Z]+([_ -]?[a-zA-Z])*$/';
 
         //Returns false if checks not satisfied
-        if (preg_match($regex, $text) === false ) {
+        if (preg_match($regex, $text) !== 1) {
             return self::return_input(false, "Text must be A - z characters only.");
         }
 
@@ -87,6 +87,26 @@ class InputProcessor {
         return self::return_input(true, $value);
 
     }
+
+        //Number verification
+        public static function process_number(string $text, $length = 0) : array {
+
+            //Checks if provided not not empty
+            if (empty($text)) {
+                return self::return_input(false, "Field is empty.");
+            }
+            
+            //Check if lenght is more than 0
+            if ($length > 0) {
+                if (strlen($text) > $length) {
+                    return self::return_input(false, "Text must be less than $length characters.");
+                }
+            }
+    
+            $value = htmlspecialchars($text);
+            return self::return_input(true, $value);
+    
+        }
 
     //FILE verification
     public static function process_file(array $file) : array {

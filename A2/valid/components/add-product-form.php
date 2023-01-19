@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     //Sends user provided data to InputProcessors for validation
     $name = InputProcessor::process_string($_POST['name'] ?? '');
     $description = InputProcessor::process_string($_POST['description'] ?? '');
-    $price = InputProcessor::process_string($_POST['price'] ?? '' && $_POST["price"] < 0);
+    $price = InputProcessor::process_number($_POST['price'] ?? '' && $_POST["price"] < 0);
     $image = InputProcessor::process_file($_FILES['image'] ?? []);
 
     $valid =  $name['valid'] && $description['valid'] && $price['valid'] && $image['valid'];
